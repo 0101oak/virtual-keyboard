@@ -103,3 +103,155 @@ const charFourth = [17, 91, 18, 32, 'AltRight', 37, 40, 39, 'v'];
 for (let i = 0; i < arrayFourth.length; i++) {
   rowFourth.append(Key(arrayFourth[i], charFourth[i]));
 }
+
+rowFourth.children[3].style.width = '300px';
+
+keyboard.onmouseover = function (event) {
+  if (event.target.classList.contains('key')) {
+    event.target.style.backgroundColor = '#354a21';
+  }
+};
+
+keyboard.onmouseout = function (event) {
+  if (event.target.classList.contains('black')) {
+    event.target.style.backgroundColor = 'black';
+    event.target.style.borderRadius = '5px';
+  } else if (event.target.classList.contains('key')) {
+    event.target.style.backgroundColor = '#29282b';
+    event.target.style.borderRadius = '5px';
+  }
+};
+
+keyboard.onmousedown = function (event) {
+  if (event.target.classList.contains('key')) {
+    const value = event.target.innerHTML;
+    console.log(value);
+    if (event.target.innerHTML === 'Backscape') {
+      textarea.value = textarea.value.slice(0, textarea.value.length - 1);
+    } else textarea.value += value;
+    event.target.style.backgroundColor = '#1d8220';
+    event.target.style.borderRadius = '50%';
+  }
+};
+
+keyboard.onmouseup = function (event) {
+  if (event.target.classList.contains('black')) {
+    event.target.style.backgroundColor = 'black';
+    event.target.style.borderRadius = '5px';
+  } else if (event.target.classList.contains('key')) {
+    event.target.style.backgroundColor = '#354a21';
+    event.target.style.borderRadius = '5px';
+  }
+};
+
+let keyActive;
+document.onkeydown = function (event) {
+  event.preventDefault();
+  keyActive = document.getElementById(event.keyCode);
+  const value = keyActive.innerHTML;
+  if (event.keyCode === 18 && lang == 0) {
+    rowFirst.innerHTML = '';
+    rowSecond.innerHTML = '';
+    rowThird.innerHTML = '';
+    for (let i = 0; i < 15; i++) {
+      rowSecond.append(Key(arrayRusSecond[i], charSecond[i]));
+    }
+    // rowFirst.firstElementChild.style.width = '50px';
+    // rowFirst.firstElementChild.style.backgroundColor = 'black';
+    // rowFirst.lastElementChild.style.backgroundColor = 'black';
+    // rowFirst.lastElementChild.style.width = '44px';
+    // rowFirst.firstElementChild.classList.add('black');
+    // rowFirst.lastElementChild.classList.add('black');
+    for (let i = 0; i < 13; i++) {
+      rowThird.append(Key(arrayRusThird[i], charThird[i]));
+    }
+
+    // rowSecond.firstElementChild.style.width = '100px';
+    // rowSecond.firstElementChild.style.backgroundColor = 'black';
+    // rowSecond.lastElementChild.style.backgroundColor = 'black';
+    // rowSecond.lastElementChild.style.width = '86px';
+    // rowSecond.firstElementChild.classList.add('black');
+    // rowSecond.lastElementChild.classList.add('black');
+    for (let i = 0; i < 13; i++) {
+      rowFourth.append(Key(arrayFourth[i], charFourth[i]));
+    }
+
+    // rowThird.firstElementChild.style.width = '100px';
+    // rowThird.firstElementChild.style.backgroundColor = 'black';
+    // rowThird.lastElementChild.style.backgroundColor = 'black';
+    // rowThird.lastElementChild.previousElementSibling.style.backgroundColor = 'black';
+    // rowThird.lastElementChild.previousElementSibling.classList.add('black');
+    // rowThird.firstElementChild.style.backgroundColor = 'black';
+    // rowThird.lastElementChild.classList.add('black');
+    // rowThird.firstElementChild.classList.add('black');
+    // rowThird.lastElementChild.style.width = '86px';
+
+    lang = 1;
+  } else if (event.keyCode === 18 && lang === 1) {
+    rowFirst.innerHTML = '';
+    rowSecond.innerHTML = '';
+    rowThird.innerHTML = '';
+    for (let i = 0; i < 15; i++) {
+      rowSecond.append(Key(arraySecond[i], charSecond[i]));
+    }
+    // rowFirst.firstElementChild.style.width = '50px';
+    // rowFirst.firstElementChild.style.backgroundColor = 'black';
+    // rowFirst.lastElementChild.style.backgroundColor = 'black';
+    // rowFirst.lastElementChild.style.width = '44px';
+    // rowFirst.firstElementChild.classList.add('black');
+    // rowFirst.lastElementChild.classList.add('black');
+    for (let i = 0; i < 13; i++) {
+      rowThird.append(Key(arrayThird[i], charThird[i]));
+    }
+
+    rowSecond.firstElementChild.style.width = '100px';
+    rowSecond.firstElementChild.style.backgroundColor = 'black';
+    rowSecond.lastElementChild.style.backgroundColor = 'black';
+    rowSecond.lastElementChild.style.width = '86px';
+    rowSecond.firstElementChild.classList.add('black');
+    rowSecond.lastElementChild.classList.add('black');
+    for (let i = 0; i < 13; i++) {
+      rowThird.append(Key(arrayThird[i], charThird[i]));
+    }
+
+    // rowThird.firstElementChild.style.width = '100px';
+    // rowThird.firstElementChild.style.backgroundColor = 'black';
+    // rowThird.lastElementChild.style.backgroundColor = 'black';
+    // rowThird.lastElementChild.previousElementSibling.style.backgroundColor = 'black';
+    // rowThird.lastElementChild.previousElementSibling.classList.add('black');
+    // rowThird.firstElementChild.style.backgroundColor = 'black';
+    // rowThird.lastElementChild.classList.add('black');
+    // rowThird.firstElementChild.classList.add('black');
+    // rowThird.lastElementChild.style.width = '86px';
+    lang = 0;
+  }
+
+  if (event.code === 'ShiftRight') {
+    keyActive = document.getElementById('ShiftRight');
+  }
+  if (event.code === 'ControlRight') {
+    keyActive = document.getElementById('ControlRight');
+  }
+  if (event.code === 'AltRight') {
+    keyActive = document.getElementById('AltRight');
+  }
+  if (value === 'Backscape') {
+    output.value = output.value.slice(0, output.value.length - 1);
+  } else if (event.keyCode !== 18 && event.keyCode !== 17
+        && event.keyCode !== 91 && event.keyCode !== 16
+        && event.keyCode !== 20 && event.keyCode !== 13
+        && event.keyCode !== 46 && event.keyCode !== 9) output.value += value;
+  keyActive.style.backgroundColor = '#1d8220';
+  keyActive.style.borderRadius = '50%';
+};
+
+document.onkeyup = function (event) {
+  event.preventDefault();
+  if (keyActive.classList.contains('black')) {
+    keyActive.style.backgroundColor = 'black';
+    keyActive.style.borderRadius = '5px';
+  } else if (keyActive.classList.contains('key')) {
+    keyActive.style.backgroundColor = '#29282b';
+    keyActive.style.borderRadius = '5px';
+  }
+};
